@@ -1,12 +1,39 @@
-## [3.7.3 - Xcode 12.? on ??, 2021](https://github.com/CocoaLumberjack/CocoaLumberjack/releases/tag/3.7.3)
+## [3.8.0 - Xcode 13.? on ??, 2022](https://github.com/CocoaLumberjack/CocoaLumberjack/releases/tag/3.8.0)
+
+### Public
+
+- _REPLACE ME_
+
+### Internal
+
+- Add consistent newline to file endings (#1272)
+- Fix error checking in DDFileLogger (#1274)
+- Avoid using NSString format (#1280)
+
+### Document
+
+- Update readme about swift-log usage (#1275)
+
+
+## [3.7.4 - Xcode 13.2 on Dec 16, 2021](https://github.com/CocoaLumberjack/CocoaLumberjack/releases/tag/3.7.4)
+
+### Public
+
+- Fix swift-tools-version in Package@swift-5.3.swift
+
+
+## [3.7.3 - Xcode 13.2 on Dec 16, 2021](https://github.com/CocoaLumberjack/CocoaLumberjack/releases/tag/3.7.3)
 
 ### Public
 
 - Fix "DDFileLogger: Failed to get offset" when setting maximumFileSize (#1234)
-
-### Internal
-
-- _REPLACE ME_
+- Follow-up to add annotations to DDOSLogger (#1248)
+- Fixed nullability conflict in DDDispatchQueueLogFormatter.h (#1252)
+- Add Swift 5.5 support, fix archive build on Xcode 13 (#1253)
+- Fix file access issue in Catalyst apps (#1257)
+- Fix excluded archs in debug build when not mac catalyst (#1260)
+- Bump Xcode last upgraded version to 13.2 (#1265)
+- Don't log warnings for CLI apps in DDTTYLogger (#1269)
 
 
 ## [3.7.2 - Xcode 12.4 on Apr 9th, 2021](https://github.com/CocoaLumberjack/CocoaLumberjack/releases/tag/3.7.2)
