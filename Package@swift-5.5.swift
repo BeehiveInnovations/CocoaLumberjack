@@ -17,7 +17,15 @@ let package = Package(
             name: "CocoaLumberjack",
             targets: ["CocoaLumberjack"]),
         .library(
+            name: "DynamicCocoaLumberjack",
+            type: .dynamic,
+            targets: ["CocoaLumberjack"]),
+        .library(
             name: "CocoaLumberjackSwift",
+            targets: ["CocoaLumberjackSwift"]),
+        .library(
+            name: "DynamicCocoaLumberjackSwift",
+            type: .dynamic,            
             targets: ["CocoaLumberjackSwift"]),
         .library(
             name: "CocoaLumberjackSwiftLogBackend",
