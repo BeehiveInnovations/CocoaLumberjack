@@ -464,12 +464,20 @@ static NSUInteger _numProcessors;
 // Nullity checks are handled by -initWithMessage:
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnullable-to-nonnull-conversion"
+  NSString *fileToUse = nil;
+  NSString *functToUse = nil;
+  if (file != NULL) {
+    fileToUse = @(file);
+  }
+  if (function != NULL) {
+    functToUse = @(function);
+  }
     DDLogMessage *logMessage = [[DDLogMessage alloc] initWithMessage:message
                                                                level:level
                                                                 flag:flag
                                                              context:context
-                                                                file:@(file)
-                                                            function:@(function)
+                                                                file:fileToUse
+                                                            function:functToUse
                                                                 line:line
                                                                  tag:tag
                                                              options:(DDLogMessageOptions)0
@@ -989,7 +997,6 @@ NSString * __nullable DDExtractFileNameWithoutExtension(const char *filePath, BO
                         options:(DDLogMessageOptions)options
                       timestamp:(NSDate *)timestamp {
     NSParameterAssert(message);
-    NSParameterAssert(file);
 
     if ((self = [super init])) {
         BOOL copyMessage = (options & DDLogMessageDontCopyMessage) == 0;
@@ -1055,7 +1062,7 @@ NS_INLINE BOOL _nullable_strings_equal(NSString* _Nullable lhs, NSString* _Nulla
         && otherMsg->_level == _level
         && otherMsg->_flag == _flag
         && otherMsg->_context == _context
-        && [otherMsg->_file isEqualToString:_file]
+        && _nullable_strings_equal(otherMsg->_file, _file)
         && _nullable_strings_equal(otherMsg->_function, _function)
         && otherMsg->_line == _line
         && (([otherMsg->_representedObject respondsToSelector:@selector(isEqual:)] && [otherMsg->_representedObject isEqual:_representedObject]) || otherMsg->_representedObject == _representedObject)

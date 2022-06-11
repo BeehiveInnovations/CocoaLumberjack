@@ -261,7 +261,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -287,7 +287,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -314,7 +314,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -342,7 +342,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -839,7 +839,7 @@ DD_SENDABLE
                           level:(DDLogLevel)level
                            flag:(DDLogFlag)flag
                         context:(NSInteger)context
-                           file:(NSString *)file
+                           file:(nullable NSString *)file
                        function:(nullable NSString *)function
                            line:(NSUInteger)line
                             tag:(nullable id)tag
@@ -858,7 +858,7 @@ DD_SENDABLE
 @property (readonly, nonatomic) DDLogFlag flag;
 @property (readonly, nonatomic) NSInteger context;
 @property (readonly, nonatomic) NSString *file;
-@property (readonly, nonatomic) NSString *fileName;
+@property (readonly, nonatomic, nullable) NSString *fileName;
 @property (readonly, nonatomic, nullable) NSString * function;
 @property (readonly, nonatomic) NSUInteger line;
 @property (readonly, nonatomic, nullable) id representedObject;
