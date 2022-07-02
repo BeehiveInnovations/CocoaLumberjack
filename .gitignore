@@ -14,3 +14,7 @@ Carthage/Build
 
 # Lumberjack generated files
 LumberjackUser*.h
+/CocoaLumberjack.xcframework/
+/CocoaLumberjackSwift.xcframework/
+/DerivedData/
+/archives/
