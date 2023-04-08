@@ -25,10 +25,6 @@
     #import <CocoaLumberjack/DDLegacyMacros.h>
 #endif
 
-#ifndef DD_LEGACY_MESSAGE_TAG
-    #define DD_LEGACY_MESSAGE_TAG 1
-#endif
-
 // Names of loggers.
 #import <CocoaLumberjack/DDLoggerNames.h>
 
@@ -265,7 +261,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -291,7 +287,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -318,7 +314,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -346,7 +342,7 @@ DD_SENDABLE
       level:(DDLogLevel)level
        flag:(DDLogFlag)flag
     context:(NSInteger)context
-       file:(const char *)file
+       file:(nullable const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
         tag:(nullable id)tag
@@ -798,9 +794,6 @@ DD_SENDABLE
     NSString *_fileName;
     NSString *_function;
     NSUInteger _line;
-    #if DD_LEGACY_MESSAGE_TAG
-    id _tag __attribute__((deprecated("Use _representedObject instead", "_representedObject")));
-    #endif
     id _representedObject;
     DDLogMessageOptions _options;
     NSDate * _timestamp;
@@ -846,7 +839,7 @@ DD_SENDABLE
                           level:(DDLogLevel)level
                            flag:(DDLogFlag)flag
                         context:(NSInteger)context
-                           file:(NSString *)file
+                           file:(nullable NSString *)file
                        function:(nullable NSString *)function
                            line:(NSUInteger)line
                             tag:(nullable id)tag
@@ -865,12 +858,9 @@ DD_SENDABLE
 @property (readonly, nonatomic) DDLogFlag flag;
 @property (readonly, nonatomic) NSInteger context;
 @property (readonly, nonatomic) NSString *file;
-@property (readonly, nonatomic) NSString *fileName;
+@property (readonly, nonatomic, nullable) NSString *fileName;
 @property (readonly, nonatomic, nullable) NSString * function;
 @property (readonly, nonatomic) NSUInteger line;
-#if DD_LEGACY_MESSAGE_TAG
-@property (readonly, nonatomic, nullable) id tag __attribute__((deprecated("Use representedObject instead", "representedObject")));
-#endif
 @property (readonly, nonatomic, nullable) id representedObject;
 @property (readonly, nonatomic) DDLogMessageOptions options;
 @property (readonly, nonatomic) NSDate *timestamp;

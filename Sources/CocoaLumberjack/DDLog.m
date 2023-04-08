@@ -464,12 +464,20 @@ static NSUInteger _numProcessors;
 // Nullity checks are handled by -initWithMessage:
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnullable-to-nonnull-conversion"
+  NSString *fileToUse = nil;
+  NSString *functToUse = nil;
+  if (file != NULL) {
+    fileToUse = @(file);
+  }
+  if (function != NULL) {
+    functToUse = @(function);
+  }
     DDLogMessage *logMessage = [[DDLogMessage alloc] initWithMessage:message
                                                                level:level
                                                                 flag:flag
                                                              context:context
-                                                                file:@(file)
-                                                            function:@(function)
+                                                                file:fileToUse
+                                                            function:functToUse
                                                                 line:line
                                                                  tag:tag
                                                              options:(DDLogMessageOptions)0
@@ -1006,12 +1014,6 @@ NSString * __nullable DDExtractFileNameWithoutExtension(const char *filePath, BO
 
         _line         = line;
         _representedObject = tag;
-#if DD_LEGACY_MESSAGE_TAG
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _tag = tag;
-#pragma clang diagnostic pop
-#endif
         _options      = options;
         _timestamp    = timestamp ?: [NSDate new];
 
@@ -1061,7 +1063,7 @@ NS_INLINE BOOL _nullable_strings_equal(NSString* _Nullable lhs, NSString* _Nulla
         && otherMsg->_level == _level
         && otherMsg->_flag == _flag
         && otherMsg->_context == _context
-        && [otherMsg->_file isEqualToString:_file]
+        && _nullable_strings_equal(otherMsg->_file, _file)
         && _nullable_strings_equal(otherMsg->_function, _function)
         && otherMsg->_line == _line
         && (([otherMsg->_representedObject respondsToSelector:@selector(isEqual:)] && [otherMsg->_representedObject isEqual:_representedObject]) || otherMsg->_representedObject == _representedObject)
@@ -1101,12 +1103,6 @@ NS_INLINE BOOL _nullable_strings_equal(NSString* _Nullable lhs, NSString* _Nulla
     newMessage->_function = _function;
     newMessage->_line = _line;
     newMessage->_representedObject = _representedObject;
-#if DD_LEGACY_MESSAGE_TAG
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    newMessage->_tag = _tag;
-#pragma clang diagnostic pop
-#endif
     newMessage->_options = _options;
     newMessage->_timestamp = _timestamp;
     newMessage->_threadID = _threadID;
@@ -1115,11 +1111,6 @@ NS_INLINE BOOL _nullable_strings_equal(NSString* _Nullable lhs, NSString* _Nulla
     newMessage->_qos = _qos;
 
     return newMessage;
-}
-
-// ensure compatibility even when built with DD_LEGACY_MESSAGE_TAG to 0.
-- (id)tag {
-    return _representedObject;
 }
 
 @end

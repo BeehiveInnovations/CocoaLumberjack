@@ -268,6 +268,9 @@ extern unsigned long long const kDDDefaultLogFilesDiskQuota;
  **/
 - (BOOL)isLogFile:(NSString *)fileName NS_SWIFT_NAME(isLogFile(withName:));
 
+// Semi-Private
+- (void) deleteOldFilesForConfigurationChange;
+
 /**
  * New log files are created empty by default in `createNewLogFile:` method
  *
