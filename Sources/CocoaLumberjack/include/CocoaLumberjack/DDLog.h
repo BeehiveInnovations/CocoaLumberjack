@@ -799,6 +799,7 @@ DD_SENDABLE
     NSDate * _timestamp;
     NSString *_threadID;
     NSString *_threadName;
+    BOOL _threadIsMain;
     NSString *_queueLabel;
     NSUInteger _qos;
 }
@@ -867,6 +868,7 @@ DD_SENDABLE
 @property (readonly, nonatomic) NSString *threadID; // ID as it appears in NSLog calculated from the machThreadID
 @property (readonly, nonatomic, nullable) NSString *threadName;
 @property (readonly, nonatomic) NSString *queueLabel;
+@property (readonly, nonatomic) BOOL threadIsMain;
 @property (readonly, nonatomic) NSUInteger qos API_AVAILABLE(macos(10.10), ios(8.0));
 
 @end

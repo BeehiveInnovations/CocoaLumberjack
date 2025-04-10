@@ -1024,6 +1024,7 @@ NSString * __nullable DDExtractFileNameWithoutExtension(const char *filePath, BO
             _threadID = @"missing threadId";
         }
         _threadName   = NSThread.currentThread.name;
+        _threadIsMain = NSThread.isMainThread;
 
         // Get the file name without extension
         _fileName = [_file lastPathComponent];
@@ -1107,6 +1108,7 @@ NS_INLINE BOOL _nullable_strings_equal(NSString* _Nullable lhs, NSString* _Nulla
     newMessage->_timestamp = _timestamp;
     newMessage->_threadID = _threadID;
     newMessage->_threadName = _threadName;
+    newMessage->_threadIsMain = _threadIsMain;
     newMessage->_queueLabel = _queueLabel;
     newMessage->_qos = _qos;
 
